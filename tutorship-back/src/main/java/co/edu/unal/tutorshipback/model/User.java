@@ -34,7 +34,6 @@ public class User {
     @NotBlank
     private String career;
 
-    @NotBlank
     private long cellphone;
 
     @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
