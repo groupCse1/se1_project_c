@@ -18,10 +18,8 @@ public class Classroom {
 	@NotBlank
 	private String building;
 
-	@NotBlank
 	private int number;
 
-	@NotBlank
 	private int capacity;
 
 	@OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)

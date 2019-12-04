@@ -32,7 +32,7 @@ public class TutorshipController {
                 .orElseThrow(() -> new ResourceNotFoundException("Tutorship", "id", tutorshipID));
     }
 
-    @PutMapping("/tutorshipt/{id}")
+    @PutMapping("/tutorship/{id}")
     public Tutorship updateTutorship(@PathVariable(value = "id") Long tutorshipID,
                                        @Valid @RequestBody Tutorship tutorshipDetails) {
 

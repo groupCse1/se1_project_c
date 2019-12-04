@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
  * Created by javergarav on 20/11/19.
  */
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 @EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
@@ -33,7 +33,7 @@ public class User {
 
     @NotBlank
     private String career;
-
+    
     private long cellphone;
 
     @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)

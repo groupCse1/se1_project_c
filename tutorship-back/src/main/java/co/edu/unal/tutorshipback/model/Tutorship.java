@@ -11,7 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "tutorships")
+@Table(name = "tutorship")
 @EntityListeners(AuditingEntityListener.class)
 public class Tutorship {
 	@Id
@@ -27,10 +27,8 @@ public class Tutorship {
 	@NotBlank
 	private Time length;
 
-	@NotBlank
 	private int limit_Number;
 
-	@NotBlank
 	private int viability;
 
 	@ManyToOne

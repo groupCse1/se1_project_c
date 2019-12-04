@@ -16,23 +16,23 @@ public class ClassroomController {
     @Autowired
     ClassroomRepository classroomRepository;
 
-    @GetMapping("/classrooms")
+    @GetMapping("/classroom")
     public List<Classroom> getAllClassrooms() {
         return classroomRepository.findAll();
     }
 
-    @PostMapping("/classrooms")
+    @PostMapping("/classroom")
     public Classroom createClassroom(@Valid @RequestBody Classroom classroom) {
         return classroomRepository.save(classroom);
     }
 
-    @GetMapping("/classrooms/{id}")
+    @GetMapping("/classroom/{id}")
     public Classroom getClassroomById(@PathVariable(value = "id") Long classroomID) {
         return classroomRepository.findById(classroomID)
                 .orElseThrow(() -> new ResourceNotFoundException("Classroom", "id", classroomID));
     }
 
-    @PutMapping("/classrooms/{id}")
+    @PutMapping("/classroom/{id}")
     public Classroom updateClassroom(@PathVariable(value = "id") Long classroomID,
                            @Valid @RequestBody Classroom classroomDetails) {
 
@@ -46,7 +46,7 @@ public class ClassroomController {
         return updatedClassroom;
     }
 
-    @DeleteMapping("/classrooms/{id}")
+    @DeleteMapping("/classroom/{id}")
     public ResponseEntity<?> deleteClassroom(@PathVariable(value = "id") Long classroomID) {
 
         Classroom classroom  = classroomRepository.findById(classroomID)
