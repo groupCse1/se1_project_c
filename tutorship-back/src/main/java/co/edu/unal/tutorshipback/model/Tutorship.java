@@ -18,6 +18,18 @@ public class Tutorship {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long idtutorship;
 
+		/*
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    @Temporal(TemporalType.DATE)
+    @NotNull
+    private Date date;
+
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="HH:mm:ss")
+    @Temporal(TemporalType.TIME)
+    @NotNull
+    private Date init_Hour;
+*/
+	
 	@NotBlank
 	private Date date;
 
