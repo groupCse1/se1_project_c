@@ -20,20 +20,12 @@ public class EnrollmentController {
     public List<Enrollment> getAllEnrollment() {
         return enrollmentRepository.findAll();
     }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> origin/feature_admedinaco
     @GetMapping("/enrollment/list/{id}")
     public List<Enrollment> getEnrollmentByTutorship(@PathVariable(value = "id") Long tutorshipID) {
         return enrollmentRepository.findEnrollmentByIdTutorship(tutorshipID);
     }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> origin/feature_admedinaco
     @PostMapping("/enrollment")
     public Enrollment createEnrollment(@Valid @RequestBody Enrollment enrollment) {
         return enrollmentRepository.save(enrollment);
