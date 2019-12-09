@@ -11,10 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".presentation.activity.ActivityInfoTutoria"></activity>
-        <activity android:name=".presentation.activity.ActivityUser"></activity>
         <activity android:name=".presentation.activity.ActivityPerfilUsuario"></activity>
-        <activity android:name=".presentation.activity.ActivityListaTutorias"></activity>
         <activity android:name=".presentation.activity.ActivityLogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
