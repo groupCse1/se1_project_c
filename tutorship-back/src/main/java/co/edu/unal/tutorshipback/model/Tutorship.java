@@ -1,14 +1,19 @@
 package co.edu.unal.tutorshipback.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.sql.Date;
 import java.sql.Time;
+import java.util.*;
+import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import static java.sql.Date.valueOf;
 
 @Entity
 @Table(name = "tutorship")
@@ -18,26 +23,15 @@ public class Tutorship {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long idtutorship;
 
-		/*
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
-    @Temporal(TemporalType.DATE)
-    @NotNull
+	@JsonFormat(pattern="dd-MM-yyyy")
+	@NotNull
     private Date date;
 
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="HH:mm:ss")
-    @Temporal(TemporalType.TIME)
-    @NotNull
-    private Date init_Hour;
-*/
-	
-	@NotBlank
-	private Date date;
+	@JsonFormat(pattern="HH:mm:ss")
+    private Time init_Hour;
 
-	@NotBlank
-	private Time init_Hour;
-
-	@NotBlank
-	private Time length;
+	@NotNull
+	private Long length;
 
 	private int limit_Number;
 
@@ -57,7 +51,7 @@ public class Tutorship {
 	@ManyToOne
 	@JoinColumn(name="classroom")
 	private Classroom classroom;
-	
+
 	public long getIdTutorship() {
 		return idtutorship;
 	}
@@ -83,10 +77,10 @@ public class Tutorship {
 	public void setInit_Hour(Time init_Hour) {
 		this.init_Hour = init_Hour;
 	}
-	public Time getLength() {
+	public Long getLength() {
 		return length;
 	}
-	public void setLength(Time length) {
+	public void setLength(Long length) {
 		this.length = length;
 	}
 	public int getLimit_Number() {

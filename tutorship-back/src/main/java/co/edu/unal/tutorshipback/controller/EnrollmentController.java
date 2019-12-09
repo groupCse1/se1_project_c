@@ -21,6 +21,11 @@ public class EnrollmentController {
         return enrollmentRepository.findAll();
     }
 
+    @GetMapping("/enrollment/list/{id}")
+    public List<Enrollment> getEnrollmentByTutorship(@PathVariable(value = "id") Long tutorshipID) {
+        return enrollmentRepository.findEnrollmentByIdTutorship(tutorshipID);
+    }
+
     @PostMapping("/enrollment")
     public Enrollment createEnrollment(@Valid @RequestBody Enrollment enrollment) {
         return enrollmentRepository.save(enrollment);
@@ -34,7 +39,7 @@ public class EnrollmentController {
 
     @PutMapping("/enrollment/{id}")
     public Enrollment updateEnrollment(@PathVariable(value = "id") Long enrollmentID,
-                                     @Valid @RequestBody Enrollment enrollmentDetails) {
+                                       @Valid @RequestBody Enrollment enrollmentDetails) {
 
         Enrollment enrollment = enrollmentRepository.findById(enrollmentID)
                 .orElseThrow(() -> new ResourceNotFoundException("Enrollment", "id", enrollmentID));
