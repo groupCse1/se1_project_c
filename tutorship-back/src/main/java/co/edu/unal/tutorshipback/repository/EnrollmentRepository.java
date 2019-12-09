@@ -11,11 +11,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EnrollmentRepository extends  JpaRepository <Enrollment, Long>{
-    /*@Query(
+    @Query(
             value = "SELECT * FROM enrollment u WHERE u.idTutorship = ?1",
             nativeQuery = true)
     List<Enrollment> findEnrollmentByIdTutorship(long id);
-    @Query(
+    /*@Query(
             value = "SELECT * FROM enrollment u WHERE u.idAssisst = ?1",
             nativeQuery = true)
     List<Enrollment> findEnrollmentByIdAssisst(long id);*/
