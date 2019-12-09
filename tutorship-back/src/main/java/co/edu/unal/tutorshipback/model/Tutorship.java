@@ -28,6 +28,7 @@ public class Tutorship {
     private Date date;
 
 	@JsonFormat(pattern="HH:mm:ss")
+	@NotNull
     private Time init_Hour;
 
 	@NotNull
