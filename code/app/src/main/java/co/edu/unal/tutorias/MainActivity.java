@@ -7,7 +7,9 @@ import android.widget.TextView;
 import java.util.List;
 
 import co.edu.unal.tutorias.Interface.TestGet;
+import co.edu.unal.tutorias.Interface.UserInterface;
 import co.edu.unal.tutorias.Model.TestPost;
+import co.edu.unal.tutorias.Model.User;
 
 
 import retrofit2.Call;
@@ -29,34 +31,64 @@ public class MainActivity extends AppCompatActivity {
 
     private void getPost() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
+                .baseUrl("http://192.168.0.6:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        TestGet testGet = retrofit.create(TestGet.class);
-        Call<List<TestPost>> call = testGet.getTestPost();
-        call.enqueue(new Callback<List<TestPost>>() {
+
+        UserInterface userInterface =retrofit.create(UserInterface.class);
+        //TestGet testGet = retrofit.create(TestGet.class);
+        Call<List<User>> callUser =userInterface.getUser();
+       // Call<List<TestPost>> call = testGet.getTestPost();
+        callUser.enqueue(new Callback<List<User>>() {
             @Override
-            public void onResponse(Call<List<TestPost>> call, Response<List<TestPost>> response) {
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 if(!response.isSuccessful()){
                     mJasonTxtView.setText("Code: " + response.code());
                     return;
                 }
-                List<TestPost> postsList = response.body();
-                for(TestPost post : postsList){
+                List<User> userList = response.body();
+                for(User i : userList){
                     String content = "";
-                    content += "user id : " + post.getUserId() + "\n";
-                    content += " id : " + post.getId() + "\n";
-                    content += "title: " + post.getTitle() + "\n";
-                    content += "body: " + post.getBody() + "\n\n";
+                    content += " id : " + i.getId() + "\n";
+                    content += "user: " + i.getUser() + "\n";
+                    content += "name: " + i.getName() + "\n";
+                    content += "faculty: " + i.getFaculty() + "\n";
+                    content += "career: " + i.getCareer() + "\n";
+                    content += "cellphone: " + i.getCellphone() + "\n\n";
                     mJasonTxtView.append(content);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<TestPost>> call, Throwable t) {
+            public void onFailure(Call<List<User>> call, Throwable t) {
                 mJasonTxtView.setText(t.getMessage());
             }
         });
+
+
+//        call.enqueue(new Callback<List<TestPost>>() {
+//            @Override
+//            public void onResponse(Call<List<TestPost>> call, Response<List<TestPost>> response) {
+//                if(!response.isSuccessful()){
+//                    mJasonTxtView.setText("Code: " + response.code());
+//                    return;
+//                }
+//                List<TestPost> postsList = response.body();
+//                for(TestPost post : postsList){
+//                    String content = "";
+//                    content += "user id : " + post.getUserId() + "\n";
+//                    content += " id : " + post.getId() + "\n";
+//                    content += "title: " + post.getTitle() + "\n";
+//                    content += "body: " + post.getBody() + "\n\n";
+//                    mJasonTxtView.append(content);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<TestPost>> call, Throwable t) {
+//                mJasonTxtView.setText(t.getMessage());
+//            }
+//        });
 
     }
 }
