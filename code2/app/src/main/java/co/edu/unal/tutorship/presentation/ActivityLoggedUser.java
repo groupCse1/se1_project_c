@@ -65,16 +65,37 @@ public class ActivityLoggedUser extends AppCompatActivity {
         System.out.println("==========FIN==========");
 
         dictated = findViewById(R.id.gegeben);
+        dictated.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(ActivityLoggedUser.this, ActivityListGiven.class);
+                startActivity(i);
+            }
+        });
 
         toDictate = findViewById(R.id.zugeben);
+        toDictate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(ActivityLoggedUser.this, ActivityListToGive.class);
+                startActivity(i);
+            }
+        });
 
         registered = findViewById(R.id.inscritas);
+        registered.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(ActivityLoggedUser.this, ActivityListRegistered.class);
+                startActivity(i);
+            }
+        });
 
         offer = findViewById(R.id.ofrecer);
         offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(ActivityLoggedUser.this, ActivityCrearTutoria.class);
+                Intent i=new Intent(ActivityLoggedUser.this, ActivityCreateTutorship.class);
                 startActivity(i);
             }
         });
@@ -83,7 +104,7 @@ public class ActivityLoggedUser extends AppCompatActivity {
         general.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(ActivityLoggedUser.this, ActivityListaGeneral.class);
+                Intent i=new Intent(ActivityLoggedUser.this, ActivityListGeneral.class);
                 startActivity(i);
             }
         });

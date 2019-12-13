@@ -39,11 +39,11 @@ public class ActivityInfoTutor extends AppCompatActivity {
         setContentView(R.layout.info_tutor);
 
 
-        nameTV = (TextView) findViewById(R.id.namet);
-        facultyTV = (TextView) findViewById(R.id.fakultätt);
-        careerTV = (TextView) findViewById(R.id.studiumt);
-        emailTV = (TextView) findViewById(R.id.emailt);
-        phoneTV = (TextView) findViewById(R.id.telefonnumert);
+        nameTV = (TextView) findViewById(R.id.name);
+        facultyTV = (TextView) findViewById(R.id.fakultät);
+        careerTV = (TextView) findViewById(R.id.studium);
+        emailTV = (TextView) findViewById(R.id.email);
+        phoneTV = (TextView) findViewById(R.id.telefonnumer);
 
         st = getIntent().getExtras().getString("nombre");
 
@@ -57,14 +57,27 @@ public class ActivityInfoTutor extends AppCompatActivity {
 
         System.out.println("==========INICIO==========");
 
-        GetTutorInfo(st);
+        GetUserInfo(st);
 
         System.out.println("==========FIN==========");
 
         dictated = findViewById(R.id.gegeben);
+        dictated.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(ActivityInfoTutor.this, ActivityListGiven.class);
+                startActivity(i);
+            }
+        });
 
         toDictate = findViewById(R.id.zugeben);
-
+        toDictate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(ActivityInfoTutor.this, ActivityListToGive.class);
+                startActivity(i);
+            }
+        });
 
 
     }
@@ -75,9 +88,9 @@ public class ActivityInfoTutor extends AppCompatActivity {
         finish();
     }
 
-    private void GetTutorInfo(String st) {
+    private void GetUserInfo(String st) {
 
-        Call<User> call = userService.GetTutorInfo(st);
+        Call<User> call = userService.GetUserInfo(st);
 
         call.enqueue(new Callback<User>() {
             @Override
@@ -124,6 +137,5 @@ public class ActivityInfoTutor extends AppCompatActivity {
             }
         });
     }
-
 
 }
