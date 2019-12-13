@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ActivityLogIn"
+    tools:context=".presentation.activity.ActivityLogIn"
     android:background="#251f4f">
 
     <com.google.android.material.textfield.TextInputEditText
