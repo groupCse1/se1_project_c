@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">Tutorias Git</string>
-    <string name="usuario_del_sia">Correo Universitario Completo</string>
-    <string name="password">Contraseña</string>
-    <string name="ETDuration">Duración</string>
-    <string name="ETCapacity">Capacidad</string>
-</resources>
