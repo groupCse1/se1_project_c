@@ -18,9 +18,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ActivityInfoTutorship extends AppCompatActivity {
+public class ActivityInfoTutorship extends AppCompatActivity{
 
-    Button CreateTutorshipButton,EstudentsListButton;
+    Button CreateTutorshipButton,StudentsListButton;
     private Button TVTutorInfo;
 
     @Override
@@ -40,7 +40,18 @@ public class ActivityInfoTutorship extends AppCompatActivity {
         final ImageView IVProfileTutorInfo = (ImageView)findViewById(R.id.IVProfileTutorInfo);
 
         CreateTutorshipButton = (Button) findViewById(R.id.CreateTutorshipButton);
-        EstudentsListButton = (Button) findViewById(R.id.EstudentsListButton);
+
+
+        StudentsListButton = (Button) findViewById(R.id.EstudentsListButton);
+        StudentsListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(ActivityInfoTutorship.this, ActivityListStudents.class);
+                startActivity(i);
+            }
+        });
+
+
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
 
@@ -75,4 +86,6 @@ public class ActivityInfoTutorship extends AppCompatActivity {
     public void onBackPressed() {
         finish();
     }
+
+
 }
