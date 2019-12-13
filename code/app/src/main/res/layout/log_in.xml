@@ -4,30 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.activity.ActivityLogIn"
+    tools:context=".presentation.ActivityLogIn"
     android:background="#251f4f">
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/anwender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="84dp"
         android:layout_marginEnd="32dp"
-        android:text="Iniciar Sesión"
+        android:backgroundTint="#ffb33b"
+        android:ems="10"
+        android:hint="@string/usuario_del_sia"
+        android:inputType="textPersonName"
+        android:textColor="#fffce1"
+        android:textColorHint="#fffce1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/passwort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#ffb33b"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="@string/password"
+        android:textColorHint="#fffce1"
+        android:textColor="#fffce1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/anwender" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/button_rounded"
+        android:text="Iniciar Sesión"
+        android:textColor="#fffce1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwort" />
+
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="205dp"
-        android:layout_height="188dp"
+        android:layout_width="297dp"
+        android:layout_height="221dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
         app:srcCompat="@drawable/unal_morado" />
@@ -37,7 +73,6 @@
         android:layout_width="429dp"
         android:layout_height="164dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="68dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

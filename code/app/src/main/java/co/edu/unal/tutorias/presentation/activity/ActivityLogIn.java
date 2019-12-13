@@ -4,94 +4,97 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.Button;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+
 
 import co.edu.unal.tutorias.R;
+import co.edu.unal.tutorias.model.User;
+import co.edu.unal.tutorias.model.UserService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ActivityLogIn extends AppCompatActivity {
 
-    int RC_SIGN_IN = 0;
-    SignInButton signInButton;
-    GoogleSignInClient mGoogleSignInClient;
-
+    private UserService userService;
+    private Boolean in=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_in);
 
-        //Initializing Views
-        signInButton = findViewById(R.id.sign_in_button);
+        final TextInputEditText EmailIn = findViewById(R.id.anwender);
+        final TextInputEditText PasswordIn = findViewById(R.id.passwort);
 
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.0.7:8080/")
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        userService = retrofit.create(UserService.class);
 
-        signInButton.setOnClickListener(new View.OnClickListener() {
+        System.out.println("==========INICIO==========");
+
+        Button loginButton = findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                signIn();
+            public void onClick(View v) {
+                in=false;
+
+
+                String Email = EmailIn.getText().toString();
+                String Password = PasswordIn.getText().toString();
+
+
+
+                verifyIn(Email,Password, v);
+            }
+        });
+
+        System.out.println("==========FIN==========");
+
+    }
+
+    private void verifyIn (final String email, String password, final View v){
+        User user = new User(email,password,"pruebaName", "pruebaFac", "pruebaCar");
+
+        Call<Boolean> call = userService.VerifyIn(user);
+
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (!response.isSuccessful()){
+                    System.out.println("CODE: "+response.code());
+                    return;
+                }
+
+                System.out.println("RESPUESTA DE INICIO: "+response.body());
+                in=response.body();
+
+                if (in==true){
+                    Intent i=new Intent(ActivityLogIn.this, ActivityLoggedUser.class);
+                    System.out.println("======ENTRO======");
+                    i.putExtra("correo", email);
+                    startActivity(i);
+                    finish();
+                }else{
+                    Snackbar.make(v,"No se pudo iniciar sesión, verifique usuario y/o contraseña", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    System.out.println("NO SE PUDO INICIAR SESIÓN");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                System.out.println(t.getMessage());
             }
         });
     }
-
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
-    }
-
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            // Signed in successfully, show authenticated UI.
-            startActivity(new Intent(ActivityLogIn.this, ActivityPerfilUsuario.class));
-        } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w("Google Sign In Error", "signInResult:failed code=" + e.getStatusCode());
-            Toast.makeText(ActivityLogIn.this, "Inicio de Sesión fallido", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    protected void onStart() {
-        // Check for existing Google Sign In account, if the user is already signed in
-        // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if(account != null) {
-            startActivity(new Intent(ActivityLogIn.this, ActivityPerfilUsuario.class));
-        }
-        super.onStart();
-    }
-
-
-
 }
