@@ -16,6 +16,11 @@ public interface UserService {
             @Query("user") String user
     );
 
+    @GET("api/init2")
+    Call<User> GetTutorInfo(
+            @Query("name") String name
+    );
+
     @POST("api/inicio")
     Call<Boolean> VerifyIn(@Body User user);
 

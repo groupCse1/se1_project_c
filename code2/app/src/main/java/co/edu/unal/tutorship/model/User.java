@@ -28,6 +28,18 @@ public class User {
 
     }
 
+    public User(String user, String name, String faculty, String career, long cellphone) {
+
+        this.user = user;
+        this.name = name;
+        this.faculty = faculty;
+        this.career = career;
+        this.cellphone = cellphone;
+
+    }
+
+
+
     public User() {
 
     }

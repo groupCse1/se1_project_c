@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".presentation.ActivityInfoTutor"></activity>
+        <activity android:name=".presentation.ActivityInfoTutoria"></activity>
+        <activity android:name=".presentation.ActivityListaGeneral"></activity>
         <activity android:name=".presentation.ActivityLoggedUser"></activity>
         <activity android:name=".presentation.ActivityCrearTutoria"></activity>
         <activity android:name=".presentation.ActivityConfirmation"></activity>

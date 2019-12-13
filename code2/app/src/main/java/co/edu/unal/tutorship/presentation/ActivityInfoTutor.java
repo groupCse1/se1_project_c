@@ -17,16 +17,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ActivityLoggedUser extends AppCompatActivity {
+public class ActivityInfoTutor extends AppCompatActivity {
 
     private UserService userService;
 
     Button dictated;
     Button toDictate;
-    Button registered;
-    Button general;
-    Button offer;
-    Button logout;
+
 
     private TextView facultyTV;
     private TextView nameTV;
@@ -39,16 +36,16 @@ public class ActivityLoggedUser extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.logged_user);
+        setContentView(R.layout.info_tutor);
 
 
-        nameTV = (TextView) findViewById(R.id.name);
-        facultyTV = (TextView) findViewById(R.id.fakultät);
-        careerTV = (TextView) findViewById(R.id.studium);
-        emailTV = (TextView) findViewById(R.id.email);
-        phoneTV = (TextView) findViewById(R.id.telefonnumer);
+        nameTV = (TextView) findViewById(R.id.namet);
+        facultyTV = (TextView) findViewById(R.id.fakultätt);
+        careerTV = (TextView) findViewById(R.id.studiumt);
+        emailTV = (TextView) findViewById(R.id.emailt);
+        phoneTV = (TextView) findViewById(R.id.telefonnumert);
 
-        st = getIntent().getExtras().getString("correo");
+        st = getIntent().getExtras().getString("nombre");
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -60,7 +57,7 @@ public class ActivityLoggedUser extends AppCompatActivity {
 
         System.out.println("==========INICIO==========");
 
-        GetUserInfo(st);
+        GetTutorInfo(st);
 
         System.out.println("==========FIN==========");
 
@@ -68,35 +65,7 @@ public class ActivityLoggedUser extends AppCompatActivity {
 
         toDictate = findViewById(R.id.zugeben);
 
-        registered = findViewById(R.id.inscritas);
 
-        offer = findViewById(R.id.ofrecer);
-        offer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(ActivityLoggedUser.this, ActivityCrearTutoria.class);
-                startActivity(i);
-            }
-        });
-
-        general = findViewById(R.id.general);
-        general.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(ActivityLoggedUser.this, ActivityListaGeneral.class);
-                startActivity(i);
-            }
-        });
-
-        logout = findViewById(R.id.logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(ActivityLoggedUser.this, ActivityLogIn.class);
-                startActivity(i);
-                finish();
-            }
-        });
 
     }
 
@@ -106,9 +75,9 @@ public class ActivityLoggedUser extends AppCompatActivity {
         finish();
     }
 
-    private void GetUserInfo(String st) {
+    private void GetTutorInfo(String st) {
 
-        Call<User> call = userService.GetUserInfo(st);
+        Call<User> call = userService.GetTutorInfo(st);
 
         call.enqueue(new Callback<User>() {
             @Override
