@@ -20,6 +20,8 @@ import android.widget.TimePicker;
 
 import org.w3c.dom.Text;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.time.MonthDay;
 import java.util.Calendar;
 
@@ -84,19 +86,22 @@ public class ActivityCreateTutorship extends AppCompatActivity implements View.O
     }
     @Override
     public void onClick(View v) {
-        if(v == DateButton){
+        if(v == DateButton) {
             final Calendar c = Calendar.getInstance();
             dia = c.get(Calendar.DAY_OF_MONTH);
             mes = c.get(Calendar.MONTH);
             ano = c.get(Calendar.YEAR);
+            Format formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String s = formatter.format(c.getTime());
+            ETfecha.setText(s);
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    ETfecha.setText(dayOfMonth+"/"+(month+1)+"/"+year);
+                    ETfecha.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
                 }
             }
-                    ,dia,mes,ano);
+                    , ano, mes, dia);
             datePickerDialog.show();
         }
         if(v== HourButton){
