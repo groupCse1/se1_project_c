@@ -1,0 +1,124 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="co.edu.unal.tutorship"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+8-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:5:22-64
+12
+13    <application
+13-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:7:5-34:19
+14        android:allowBackup="true"
+14-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:8:9-35
+15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+15-->[androidx.core:core:1.1.0-rc02] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\c8f7defe02482821e9693d5c096b7c53\core-1.1.0-rc02\AndroidManifest.xml:24:18-86
+16        android:debuggable="true"
+17        android:icon="@mipmap/ic_launcher"
+17-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:9:9-43
+18        android:label="@string/app_name"
+18-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:10:9-41
+19        android:roundIcon="@mipmap/ic_launcher_round"
+19-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:11:9-54
+20        android:supportsRtl="true"
+20-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:12:9-35
+21        android:testOnly="true"
+22        android:theme="@style/AppTheme.NoActionBar"
+22-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:14:9-52
+23        android:usesCleartextTraffic="true" >
+23-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:13:9-44
+24        <activity android:name="co.edu.unal.tutorship.presentation.ActivityListStudents" />
+24-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:16:9-80
+24-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:16:19-68
+25        <activity android:name="co.edu.unal.tutorship.presentation.ActivityListGeneral" />
+25-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:17:9-79
+25-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:17:19-67
+26        <activity android:name="co.edu.unal.tutorship.presentation.ActivityListRegistered" />
+26-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:18:9-82
+26-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:18:19-70
+27        <activity android:name="co.edu.unal.tutorship.presentation.ActivityListToGive" />
+27-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:19:9-78
+27-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:19:19-66
+28        <activity android:name="co.edu.unal.tutorship.presentation.ActivityListGiven" />
+28-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:20:9-77
+28-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:20:19-65
+29        <activity android:name="co.edu.unal.tutorship.presentation.ActivityInfoTutorship" />
+29-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:21:9-81
+29-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:21:19-69
+30        <activity android:name="co.edu.unal.tutorship.presentation.ActivityCreateTutorship" />
+30-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:22:9-83
+30-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:22:19-71
+31        <activity android:name="co.edu.unal.tutorship.presentation.ActivityConfirmation" />
+31-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:23:9-80
+31-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:23:19-68
+32        <activity android:name="co.edu.unal.tutorship.presentation.ActivityLoggedUser" />
+32-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:24:9-78
+32-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:24:19-66
+33        <activity android:name="co.edu.unal.tutorship.presentation.ActivityInfoTutor" />
+33-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:25:9-77
+33-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:25:19-65
+34        <activity
+34-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:26:9-33:20
+35            android:name="co.edu.unal.tutorship.presentation.ActivityLogIn"
+35-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:26:19-61
+36            android:theme="@style/AppTheme.NoActionBar" >
+36-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:27:13-56
+37            <intent-filter>
+37-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:28:13-32:29
+38                <action android:name="android.intent.action.MAIN" />
+38-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:29:17-69
+38-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:29:25-66
+39
+40                <category android:name="android.intent.category.LAUNCHER" />
+40-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:31:17-77
+40-->C:\ARCHIVOS\ProyectCSE1\se1_project_c\code3\app\src\main\AndroidManifest.xml:31:27-74
+41            </intent-filter>
+42        </activity>
+43        <activity
+43-->[com.google.android.gms:play-services-auth:16.0.0] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\e3c5d8f5bf7576ef99f98c3db0f2a767\jetified-play-services-auth-16.0.0\AndroidManifest.xml:23:9-27:75
+44            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+44-->[com.google.android.gms:play-services-auth:16.0.0] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\e3c5d8f5bf7576ef99f98c3db0f2a767\jetified-play-services-auth-16.0.0\AndroidManifest.xml:24:13-93
+45            android:excludeFromRecents="true"
+45-->[com.google.android.gms:play-services-auth:16.0.0] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\e3c5d8f5bf7576ef99f98c3db0f2a767\jetified-play-services-auth-16.0.0\AndroidManifest.xml:25:13-46
+46            android:exported="false"
+46-->[com.google.android.gms:play-services-auth:16.0.0] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\e3c5d8f5bf7576ef99f98c3db0f2a767\jetified-play-services-auth-16.0.0\AndroidManifest.xml:26:13-37
+47            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+47-->[com.google.android.gms:play-services-auth:16.0.0] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\e3c5d8f5bf7576ef99f98c3db0f2a767\jetified-play-services-auth-16.0.0\AndroidManifest.xml:27:13-72
+48        <!--
+49            Service handling Google Sign-In user revocation. For apps that do not integrate with
+50            Google Sign-In, this service will never be started.
+51        -->
+52        <service
+52-->[com.google.android.gms:play-services-auth:16.0.0] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\e3c5d8f5bf7576ef99f98c3db0f2a767\jetified-play-services-auth-16.0.0\AndroidManifest.xml:33:9-36:110
+53            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+53-->[com.google.android.gms:play-services-auth:16.0.0] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\e3c5d8f5bf7576ef99f98c3db0f2a767\jetified-play-services-auth-16.0.0\AndroidManifest.xml:34:13-89
+54            android:exported="true"
+54-->[com.google.android.gms:play-services-auth:16.0.0] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\e3c5d8f5bf7576ef99f98c3db0f2a767\jetified-play-services-auth-16.0.0\AndroidManifest.xml:35:13-36
+55            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
+55-->[com.google.android.gms:play-services-auth:16.0.0] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\e3c5d8f5bf7576ef99f98c3db0f2a767\jetified-play-services-auth-16.0.0\AndroidManifest.xml:36:13-107
+56
+57        <activity
+57-->[com.google.android.gms:play-services-base:15.0.1] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\8ec9a531047e5da6666b1e8c4d66ecc4\jetified-play-services-base-15.0.1\AndroidManifest.xml:23:9-26:75
+58            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+58-->[com.google.android.gms:play-services-base:15.0.1] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\8ec9a531047e5da6666b1e8c4d66ecc4\jetified-play-services-base-15.0.1\AndroidManifest.xml:24:13-79
+59            android:exported="false"
+59-->[com.google.android.gms:play-services-base:15.0.1] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\8ec9a531047e5da6666b1e8c4d66ecc4\jetified-play-services-base-15.0.1\AndroidManifest.xml:25:13-37
+60            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+60-->[com.google.android.gms:play-services-base:15.0.1] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\8ec9a531047e5da6666b1e8c4d66ecc4\jetified-play-services-base-15.0.1\AndroidManifest.xml:26:13-72
+61
+62        <meta-data
+62-->[com.google.android.gms:play-services-basement:15.0.1] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\63b284f00273ac1033dfe597a373a727\jetified-play-services-basement-15.0.1\AndroidManifest.xml:23:9-25:69
+63            android:name="com.google.android.gms.version"
+63-->[com.google.android.gms:play-services-basement:15.0.1] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\63b284f00273ac1033dfe597a373a727\jetified-play-services-basement-15.0.1\AndroidManifest.xml:24:13-58
+64            android:value="@integer/google_play_services_version" />
+64-->[com.google.android.gms:play-services-basement:15.0.1] C:\Users\Valentina Calderón\.gradle\caches\transforms-2\files-2.1\63b284f00273ac1033dfe597a373a727\jetified-play-services-basement-15.0.1\AndroidManifest.xml:25:13-66
+65    </application>
+66
+67</manifest>
