@@ -52,7 +52,7 @@ public class ActivityLoggedUser extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.7:8080/")
+                .baseUrl("http://192.168.56.1:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
