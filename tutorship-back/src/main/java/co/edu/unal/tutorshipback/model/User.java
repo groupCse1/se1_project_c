@@ -83,4 +83,24 @@ public class User {
     public void setCellphone(long cellphone) {
         this.cellphone = cellphone;
     }
+
+    public User(String user, String password, String name, String faculty, String career) {
+        this.user = user;
+        this.password = password;
+        this.name = name;
+        this.faculty = faculty;
+        this.career = career;
+
+    }
+
+    public User (){ }
+
+    public User(String user, String name, String faculty, String career, long cellphone) {
+        this.user = user;
+        this.name = name;
+        this.faculty = faculty;
+        this.career = career;
+        this.cellphone = cellphone;
+
+    }
 }
