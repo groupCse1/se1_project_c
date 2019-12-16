@@ -53,7 +53,8 @@ public class ActivityLoggedUser extends AppCompatActivity {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.56.1:8080/")
-                .addConverterFactory(GsonConverterFactory.create())
+
+            .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         userService = retrofit.create(UserService.class);
@@ -105,6 +106,7 @@ public class ActivityLoggedUser extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(ActivityLoggedUser.this, ActivityListGeneral.class);
+                i.putExtra("correo",st);
                 startActivity(i);
             }
         });
