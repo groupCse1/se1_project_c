@@ -36,12 +36,6 @@ public class User {
     
     private long cellphone;
 
-    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
-    private Set<Tutorship> tutorships;
-
-    @OneToMany(mappedBy = "idAssisst", cascade = CascadeType.ALL)
-    private Set<Enrollment> enrollments;
-
     public String getUser() {
         return user;
     }

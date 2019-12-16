@@ -34,63 +34,81 @@ public class Tutorship {
 	@NotNull
 	private Long length;
 
+	@NotNull
+	private Long tutor;
+
+	@NotNull
+	private Long subject;
+
+	@NotNull
+	private Long classroom;
+
 	private int limit_Number;
 
 	private int viability;
 
-	@ManyToOne
-	@JoinColumn(name="tutor")
-	private User tutor;
-
-	@OneToMany(mappedBy = "idTutorship", cascade = CascadeType.ALL)
-	private Set<Enrollment> enrollments;
-
-	@ManyToOne
-	@JoinColumn(name="subject")
-	private Subject subject;
-
-	@ManyToOne
-	@JoinColumn(name="classroom")
-	private Classroom classroom;
-
-	public long getIdTutorship() {
-		return idtutorship;
-	}
-	public void setIdTutorship(long idtutorship) {
-		this.idtutorship=idtutorship;
-	}
 
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public int getViability() {
-		return viability;
-	}
-	public void setViability(int viability) {
-		this.viability = viability;
-	}
+
 	public Time getInit_Hour() {
 		return init_Hour;
 	}
+
 	public void setInit_Hour(Time init_Hour) {
 		this.init_Hour = init_Hour;
 	}
+
 	public Long getLength() {
 		return length;
 	}
+
 	public void setLength(Long length) {
 		this.length = length;
 	}
+
+	public Long getTutor() {
+		return tutor;
+	}
+
+	public void setTutor(Long tutor) {
+		this.tutor = tutor;
+	}
+
+	public Long getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Long subject) {
+		this.subject = subject;
+	}
+
+	public Long getClassroom() {
+		return classroom;
+	}
+
+	public void setClassroom(Long classroom) {
+		this.classroom = classroom;
+	}
+
 	public int getLimit_Number() {
 		return limit_Number;
 	}
+
 	public void setLimit_Number(int limit_Number) {
 		this.limit_Number = limit_Number;
 	}
-	public User getTutor() {
-		return tutor;
+
+	public int getViability() {
+		return viability;
+	}
+
+	public void setViability(int viability) {
+		this.viability = viability;
 	}
 }

@@ -40,12 +40,14 @@ public class TutorshipController {
                 .orElseThrow(() -> new ResourceNotFoundException("Tutorship", "id", tutorshipID));
 
 
-        tutorship.setIdTutorship(tutorshipDetails.getIdTutorship());
         tutorship.setDate(tutorshipDetails.getDate());
         tutorship.setViability(tutorshipDetails.getViability());
         tutorship.setInit_Hour(tutorshipDetails.getInit_Hour());
         tutorship.setLength(tutorshipDetails.getLength());
         tutorship.setLimit_Number(tutorshipDetails.getLimit_Number());
+        tutorship.setSubject(tutorshipDetails.getSubject());
+        tutorship.setClassroom(tutorshipDetails.getClassroom());
+        tutorship.setTutor(tutorshipDetails.getTutor());
         Tutorship updateTutorship = tutorshipRepository.save(tutorship);
         return  updateTutorship;
     }

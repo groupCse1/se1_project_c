@@ -46,7 +46,9 @@ public class EnrollmentController {
 
         Enrollment updatedEnrollment = enrollmentRepository.save(enrollment);
 
-        //all Attributes are FK :v
+        updatedEnrollment.setIdAssisst(enrollmentDetails.getIdAssisst());
+        updatedEnrollment.setIdTutorship(enrollmentDetails.getIdTutorship());
+        updatedEnrollment.setInteresting_Topic(enrollmentDetails.getInteresting_Topic());
         return updatedEnrollment;
     }
 

@@ -22,8 +22,6 @@ public class Classroom {
 
 	private int capacity;
 
-	@OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
-	private Set<Tutorship> tutorships;
 
 	public String getBuilding() {
 		return building;
