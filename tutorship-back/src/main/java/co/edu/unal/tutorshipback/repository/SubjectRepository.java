@@ -14,5 +14,5 @@ public interface SubjectRepository extends JpaRepository <Subject, Long>{
 
             nativeQuery = true)
 
-    User findSubjectByName(String name);
+    Subject findSubjectByName(String name);
 }
