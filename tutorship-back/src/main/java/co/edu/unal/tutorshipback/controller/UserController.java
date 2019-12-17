@@ -25,7 +25,7 @@ public class UserController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     
-    @GetMapping("/user/username/{id}")
+    @GetMapping("/find/{id}")
     public User getuserbyUsername(@PathVariable(value = "id") String userId){
         return userRepository.finduserbyUsername(userId);
         }
