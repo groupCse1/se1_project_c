@@ -25,7 +25,12 @@ public class SubjectController {
     public Subject createSubject(@Valid @RequestBody Subject subject) {
         return subjectRepository.save(subject);
     }
-
+    
+    @GetMapping("/subject/find/{id}")
+    public Subject getSubjectByName(@PathVariable(value = "id") String subjectID) {
+        return subjectRepository.findSubjectByName(subjectID);
+    }
+    
     @GetMapping("/subject/{id}")
     public Subject getSubjectById(@PathVariable(value = "id") Long subjectID) {
         return subjectRepository.findById(subjectID)
