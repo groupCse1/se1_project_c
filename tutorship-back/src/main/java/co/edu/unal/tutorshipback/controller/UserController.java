@@ -1,3 +1,4 @@
+
 package co.edu.unal.tutorshipback.controller;
 
 import co.edu.unal.tutorshipback.model.User;
@@ -23,7 +24,12 @@ public class UserController {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
+    
+    @GetMapping("/user/username/{id}")
+    public User getuserbyUsername(@PathVariable(value = "id") String userId){
+        return userRepository.finduserbyUsername(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+    }
     @GetMapping("/user")
     public List<User> getAllUsers() {
         return userRepository.findAll();
