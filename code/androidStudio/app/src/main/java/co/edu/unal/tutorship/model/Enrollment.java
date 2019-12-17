@@ -49,4 +49,12 @@ public class Enrollment {
         this.interestin_Topic = interestin_Topic;
     }
 
+    public Enrollment() {
+        super();
+        this.id = id;
+        this.idAssisst = idAssisst;
+        this.idTutorship = idTutorship;
+        this.interestin_Topic = interestin_Topic;
+    }
+
 }

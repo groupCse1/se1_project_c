@@ -24,23 +24,17 @@ public class Tutorship {
 	private long idtutorship;
 
 	@JsonFormat(pattern="dd-MM-yyyy")
-	@NotNull
     private Date date;
 
 	@JsonFormat(pattern="HH:mm:ss")
-	@NotNull
     private Time init_Hour;
 
-	@NotNull
 	private Long length;
 
-	@NotNull
 	private Long tutor;
 
-	@NotNull
 	private Long subject;
 
-	@NotNull
 	private Long classroom;
 
 	private int limit_Number;

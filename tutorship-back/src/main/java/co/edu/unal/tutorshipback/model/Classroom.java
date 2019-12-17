@@ -15,15 +15,12 @@ public class Classroom {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 
-	@NotBlank
 	private String building;
 
 	private int number;
 
 	private int capacity;
 
-	@OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
-	private Set<Tutorship> tutorships;
 
 	public String getBuilding() {
 		return building;

@@ -125,9 +125,9 @@ public class ActivityListGeneral extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
 
-                    user = response.body();
-                    tutor.setText(user.getName());
-                    System.out.println("------------------- "+ user.getName() +" --------------------------");
+                    //user = response.body();
+                    tutor.setText(response.body().getName());
+                    System.out.println("------------------- "+ response.body().getName() +" --------------------------");
 
                 }
 

@@ -4,7 +4,6 @@ package co.edu.unal.tutorship.presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -19,6 +18,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
+import com.google.gson.annotations.SerializedName;
+
 import org.w3c.dom.Text;
 
 import java.text.Format;
@@ -26,11 +27,14 @@ import java.text.SimpleDateFormat;
 import java.time.MonthDay;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedList;
 import java.util.List;
 
 import co.edu.unal.tutorship.R;
 import co.edu.unal.tutorship.model.Classroom;
 import co.edu.unal.tutorship.model.ClassroomService;
+import co.edu.unal.tutorship.model.Subject;
+import co.edu.unal.tutorship.model.SubjectService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,35 +43,34 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ActivityCreateTutorship extends AppCompatActivity implements View.OnClickListener{
 
-    private ClassroomService classroomService;
-    ArrayList<String> salones = new ArrayList<>();
-    String building;
-
     Button DateButton,HourButton,CreateButton;
     EditText ETfecha,EThora,ETDuration,ETCapacity;
     Spinner SubjectSpinner,BuildingSpinner,RoomSpinner;
     TextView TVTittleCreate;
+    private TextView mJasonTxtView;
     private int dia,mes,ano,hora,minutos;
+    String tutor="bmguzmang@unal.edu.co";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crear_tutoria);
 
-        TVTittleCreate = (TextView)findViewById(R.id.TVTittleCreate);
+        TVTittleCreate = (TextView) findViewById(R.id.TVTittleCreate);
 
-        DateButton =  (Button)findViewById(R.id.DateButton);
-        HourButton =  (Button)findViewById(R.id.HourButton);
-        CreateButton = (Button)findViewById(R.id.CreateButton);
+        DateButton = (Button) findViewById(R.id.DateButton);
+        HourButton = (Button) findViewById(R.id.HourButton);
+        CreateButton = (Button) findViewById(R.id.CreateButton);
 
-        ETfecha =  (EditText) findViewById(R.id.ETfecha);
-        EThora =  (EditText) findViewById(R.id.EThora);
-        ETCapacity = (EditText)findViewById(R.id.ETCapacity);
-        ETDuration = (EditText)findViewById(R.id.ETDuration);
+        ETfecha = (EditText) findViewById(R.id.ETfecha);
+        EThora = (EditText) findViewById(R.id.EThora);
+        ETCapacity = (EditText) findViewById(R.id.ETCapacity);
+        ETDuration = (EditText) findViewById(R.id.ETDuration);
 
-        SubjectSpinner = (Spinner)findViewById(R.id.SubjectSpinner);
-        BuildingSpinner = (Spinner)findViewById(R.id.BuildingSpinner);
-        RoomSpinner = (Spinner)findViewById(R.id.RoomSpinner);
+        SubjectSpinner = (Spinner) findViewById(R.id.SubjectSpinner);
+        BuildingSpinner = (Spinner) findViewById(R.id.BuildingSpinner);
+        RoomSpinner = (Spinner) findViewById(R.id.RoomSpinner);
 
         DateButton.setOnClickListener(this);
         HourButton.setOnClickListener(this);
@@ -75,73 +78,84 @@ public class ActivityCreateTutorship extends AppCompatActivity implements View.O
 
         TVTittleCreate.setText("Diligencia el Formulario");
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,salones);
-        RoomSpinner.setAdapter(arrayAdapter);
-
-        // Datos Spinner
-        String[] Subjects = {"Ingenieria de Software","Algoritmos","Cálculo Diferencial","Señales y Sistemas"};
-        String[] Buildings = {"Viejo","Aulas de Ingenieria","CyT"};
-        //Integer[] Room = {101,102,103,104,105,106,201,202,203,204,205,206,301,302,303,304,305,306,401,402,403,404,405,406};
-
-        // Conexion con vista
-
-        ArrayAdapter<String> SubjectAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,Subjects);
-        SubjectSpinner.setAdapter(SubjectAdapter);
-        ArrayAdapter<String> BuildingAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,Buildings);
-        BuildingSpinner.setAdapter(BuildingAdapter);
-        //ArrayAdapter<Integer> RoomAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item,Room);
-        //RoomSpinner.setAdapter(RoomAdapter);
-
-        BuildingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                building = (String) adapterView.getItemAtPosition(i);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        System.out.println(building);
-
-
+        // Subjects
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.7:8080/")
+                .baseUrl("http://192.168.0.4:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        classroomService = retrofit.create(ClassroomService.class);
-        GetClassrooms(building);
-    }
+        final List subjects = new ArrayList<>();
+        final SubjectService subjectService = retrofit.create(SubjectService.class);
+        Call<List<Subject>> callSubject = subjectService.getSubject();
+        callSubject.enqueue(new Callback<List<Subject>>() {
+            @Override
+            public void onResponse(Call<List<Subject>> call, Response<List<Subject>> response) {
+                for (Subject s : response.body()) {
+                    subjects.add(s);
+                }
+                getSubjectBar(subjects);
+            }
 
-    private void GetClassrooms(String building) {
+            @Override
+            public void onFailure(Call<List<Subject>> call, Throwable t) {
+                //mJasonTxtView.setText(t.getMessage());
+            }
+        });
 
-        Classroom cl = new Classroom(building,4,4);
+        //Buindings
+        Retrofit retrofit2 = new Retrofit.Builder()
+                .baseUrl("http://192.168.0.4:8080/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        Call<List<Classroom>> call = classroomService.GetAllClassrooms(cl);
+        ClassroomService classroomserv = retrofit2.create(ClassroomService.class);
+        Call<List<Classroom>> callClassroom =classroomserv.getClassroom();
+        callClassroom.enqueue(new Callback<List<Classroom>>() {
 
-        call.enqueue(new Callback<List<Classroom>>() {
             @Override
             public void onResponse(Call<List<Classroom>> call, Response<List<Classroom>> response) {
-                if (!response.isSuccessful()){
-                    System.out.println("CODE: "+response.code());
+                if(!response.isSuccessful()){
                     return;
                 }
-                if(response.isSuccessful()){
-                    for (Classroom classroom : response.body()) {
-                        salones.add(classroom.getBuilding());
-                    }
-                    System.out.println("======LISTA======");
-                }
+                List<Classroom> classroomList = response.body();
+                getBuildingBar(classroomList);
             }
 
             @Override
             public void onFailure(Call<List<Classroom>> call, Throwable t) {
-
+                //mJasonTxtView.setText(t.getMessage());
             }
+
         });
+
+
+        //tutor = getIntent().getExtras().getString("correo");
+    }
+
+    public void getSubjectBar(final List<Subject> curSubject){
+        String[] Subjects = new String[curSubject.size()];
+        for(int i=0; i<curSubject.size(); ++i)  Subjects[i] = curSubject.get(i).getSubject_name();
+        String[] Buildings = {"Viejo de Ingenieria","Aulas de Ingenieria","Ciencia y Tecnologia","FEM","Instituto de Extensión e Investigación"};
+        Integer[] Room = {101,102,103,104,105,106,201,202,203,204,205,206,301,302,303,304,305,306,401,402,403,404,405,406};
+
+        System.out.println(curSubject.size());
+        ArrayAdapter<String> SubjectAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,Subjects);
+        SubjectSpinner.setAdapter(SubjectAdapter);
+    }
+
+    public void getBuildingBar(List<Classroom> classroomList){
+        String[] classnames = new String[classroomList.size()];
+        Integer[] numbuild = new Integer[classroomList.size()];
+
+        for(int c=0;c<classroomList.size();c++){
+            classnames[c]=classroomList.get(c).getBuilding();
+            numbuild[c]=classroomList.get(c).getNumber();
+        }
+
+        ArrayAdapter<String> BuildingAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,classnames);
+        BuildingSpinner.setAdapter(BuildingAdapter);
+        ArrayAdapter<Integer> RoomAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item,numbuild);
+        RoomSpinner.setAdapter(RoomAdapter);
 
     }
 
@@ -149,6 +163,7 @@ public class ActivityCreateTutorship extends AppCompatActivity implements View.O
     public void onBackPressed() {
         finish();
     }
+
     @Override
     public void onClick(View v) {
         if(v == DateButton) {
@@ -156,7 +171,7 @@ public class ActivityCreateTutorship extends AppCompatActivity implements View.O
             dia = c.get(Calendar.DAY_OF_MONTH);
             mes = c.get(Calendar.MONTH);
             ano = c.get(Calendar.YEAR);
-            Format formatter = new SimpleDateFormat("dd/MM/yyyy");
+            Format formatter = new SimpleDateFormat("dd-MM-yyyy");
             String s = formatter.format(c.getTime());
             ETfecha.setText(s);
 
@@ -193,6 +208,15 @@ public class ActivityCreateTutorship extends AppCompatActivity implements View.O
             visorConfirmation.putExtra("DBuilding",BuildingSpinner.getSelectedItem().toString());
             visorConfirmation.putExtra("DRoom",RoomSpinner.getSelectedItem().toString());
             visorConfirmation.putExtra("DCapacity",ETCapacity.getText().toString());
+            visorConfirmation.putExtra("correo", tutor);
+
+            System.out.println(SubjectSpinner.getSelectedItem().toString());
+            System.out.println(ETfecha.getText().toString());
+            System.out.println(EThora.getText().toString());
+            System.out.println(ETDuration.getText().toString());
+            System.out.println(BuildingSpinner.getSelectedItem().toString());
+            System.out.println(RoomSpinner.getSelectedItem().toString());
+            System.out.println(ETCapacity.getText().toString());
 
             startActivity(visorConfirmation);
         }

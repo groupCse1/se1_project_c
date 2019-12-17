@@ -1,11 +1,16 @@
 package co.edu.unal.tutorship.model;
 
 
+import com.google.gson.annotations.SerializedName;
+
 public class Subject {
+    @SerializedName("code")
     private long code;
 
+    @SerializedName("subject_name")
     private String subject_name;
 
+    @SerializedName("subject_faculty")
     private String subject_faculty;
 
 
@@ -41,5 +46,7 @@ public class Subject {
         this.subject_faculty = subject_faculty;
     }
 
-
+    public Subject() {
+        super();
+    }
 }

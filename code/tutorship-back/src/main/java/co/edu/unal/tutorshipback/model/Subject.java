@@ -15,10 +15,8 @@ public class Subject {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long code;
 
-	@NotBlank
 	private String subject_name;
 
-	@NotBlank
 	private String subject_faculty;
 
 	public Long getCode() {

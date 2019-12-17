@@ -91,4 +91,12 @@ public class User {
     public void setCellphone(long cellphone) {
         this.cellphone = cellphone;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

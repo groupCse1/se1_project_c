@@ -15,7 +15,6 @@ public class Classroom {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 
-	@NotBlank
 	private String building;
 
 	private int number;

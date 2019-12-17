@@ -1,5 +1,7 @@
 package co.edu.unal.tutorship.presentation;
 
+
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,7 +34,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ActivityConfirmation extends AppCompatActivity implements View.OnClickListener {
-
     private TextView TVSubject,TVDate,TVHour,TVDuration,TVBuilding,TVRoom,TVCapacity,TVTittle;
     private Button BackButton,ConfirmationButton;
     Tutorship target;
@@ -46,7 +47,7 @@ public class ActivityConfirmation extends AppCompatActivity implements View.OnCl
     String tutor;
 
     long idSubject;
-    Long idClassroom;
+    long idClassroom;
     long idTutor = -1;
 
 
@@ -118,13 +119,13 @@ public class ActivityConfirmation extends AppCompatActivity implements View.OnCl
             System.out.println(DSubject);
             //Subjects
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://192.168.0.6:8080/")
+                    .baseUrl("http://192.168.0.4:8080/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
             final List subjects = new ArrayList<>();
             final SubjectService subjectService = retrofit.create(SubjectService.class);
-            /*Call<List<Subject>> callSubject = subjectService.getSubject();
+            Call<List<Subject>> callSubject = subjectService.getSubject();
             callSubject.enqueue(new Callback<List<Subject>>() {
                 @Override
                 public void onResponse(Call<List<Subject>> call, Response<List<Subject>> response) {
@@ -145,7 +146,7 @@ public class ActivityConfirmation extends AppCompatActivity implements View.OnCl
 
             //Classroom
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://192.168.0.6:8080/")
+                    .baseUrl("http://192.168.0.4:8080/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
@@ -175,7 +176,7 @@ public class ActivityConfirmation extends AppCompatActivity implements View.OnCl
 
             //Tutor
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://192.168.0.6:8080/")
+                    .baseUrl("http://192.168.0.4:8080/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             UserService user = retrofit.create(UserService.class);
@@ -215,7 +216,7 @@ public class ActivityConfirmation extends AppCompatActivity implements View.OnCl
             newTutorship.setDate(newDate);
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://192.168.0.6:8080/")
+                    .baseUrl("http://192.168.0.4:8080/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
@@ -238,9 +239,56 @@ public class ActivityConfirmation extends AppCompatActivity implements View.OnCl
                 public void onFailure(Call<Tutorship> call, Throwable t) {
                     System.out.println(t.getMessage());
                 }
-            });*/
+            });
 
         }
     }
 
+    /*private void getPost() {
+        Retrofit retrofit = new Retrofit.Builder()
+
+                .baseUrl("http://192.168.0.6:8080/")
+
+                .addConverterFactory(GsonConverterFactory.create())
+
+                .build();
+        TutorshipService tutorshipserv = retrofit.create(TutorshipService.class);
+
+        Call<Tutorship> callClassroom = (Call<Tutorship>) tutorshipserv.postTutorship(target);
+
+        callClassroom.enqueue(new Callback<Tutorship>() {
+
+            @Override
+
+            public void onResponse(Call<Tutorship> call, Response<Tutorship> response) {
+
+                if (!response.isSuccessful()) {
+
+                    //mJasonTxtView.setText("Code: " + response.code());
+
+                    return;
+
+                }
+
+                Tutorship resp = response.body();
+
+                //for(User i : userList){
+
+                //mJasonTxtView.append(content);
+
+                //}
+
+            }
+
+
+            @Override
+
+            public void onFailure(Call<Tutorship> call, Throwable t) {
+
+                //mJasonTxtView.setText(t.getMessage());
+
+            }
+
+        });
+    }*/
 }

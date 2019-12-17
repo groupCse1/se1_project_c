@@ -21,14 +21,11 @@ public class Subject {
 	@NotBlank
 	private String subject_faculty;
 
-	@OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
-	private Set<Tutorship> tutorships;
-
-	public long getCode() {
+	public Long getCode() {
 		return code;
 	}
 
-	public void setCode(long code) {
+	public void setCode(Long code) {
 		this.code = code;
 	}
 

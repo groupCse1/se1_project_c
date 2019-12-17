@@ -13,13 +13,10 @@ public class Enrollment {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
-    @NotNull(message = "Please enter id")
     private Long idAssisst;
 
-    @NotNull(message = "Please enter id")
     private Long idTutorship;
 
-    @NotBlank
     private String interesting_Topic;
 
     public long getId() {

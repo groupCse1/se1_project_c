@@ -16,18 +16,18 @@ public class Tutorship {
 
     private int viability;
 
-    private Long tutor;
+    private long tutor;
 
-    private Long subject;
+    private long subject;
 
-    private Long classroom;
+    private long classroom;
 
 
 
 
 
     public Tutorship(long idtutorship, String date, String init_Hour, int length, int limit_Number, int viability,
-                     Long tutor, Long subject, Long classroom) {
+                     long tutor, long subject, long classroom) {
         super();
         this.idtutorship = idtutorship;
         this.date = date;
@@ -63,23 +63,23 @@ public class Tutorship {
         this.idtutorship = idtutorship;
     }
 
-    public void setTutor(Long tutor) {
+    public void setTutor(long tutor) {
         this.tutor = tutor;
     }
 
-    public Long getSubject() {
+    public long getSubject() {
         return subject;
     }
 
-    public void setSubject(Long subject) {
+    public void setSubject(long subject) {
         this.subject = subject;
     }
 
-    public Long getClassroom() {
+    public long getClassroom() {
         return classroom;
     }
 
-    public void setClassroom(Long classroom) {
+    public void setClassroom(long classroom) {
         this.classroom = classroom;
     }
 
@@ -120,7 +120,7 @@ public class Tutorship {
     public void setLimit_Number(int limit_Number) {
         this.limit_Number = limit_Number;
     }
-    public Long getTutor() {
+    public long getTutor() {
         return tutor;
     }
 

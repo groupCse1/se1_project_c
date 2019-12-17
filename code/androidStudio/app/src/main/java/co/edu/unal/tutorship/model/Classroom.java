@@ -2,7 +2,7 @@ package co.edu.unal.tutorship.model;
 
 public class Classroom {
 
-    private Long id;
+    private long id;
 
     private String building;
 
@@ -11,7 +11,7 @@ public class Classroom {
     private int capacity;
 
 
-    public Classroom(Long id, String building, int number, int capacity) {
+    public Classroom(long id, String building, int number, int capacity) {
         super();
         this.id = id;
         this.building = building;
@@ -55,5 +55,9 @@ public class Classroom {
         this.building = building;
         this.number = number;
         this.capacity = capacity;
+    }
+
+    public Classroom() {
+        super();
     }
 }

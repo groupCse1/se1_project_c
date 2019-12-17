@@ -1,5 +1,7 @@
 package co.edu.unal.tutorship.model;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -23,5 +25,11 @@ public interface UserService {
 
     @GET("user/{id}")
     Call<User> getUsers (@Path("id") long userId);
+
+    @GET("api/users/{id}")
+    Call<User> getUserbyid (@Path("id") long userID);
+
+    @GET("api/user")
+    Call<List<User>> getUserList();
 
 }
