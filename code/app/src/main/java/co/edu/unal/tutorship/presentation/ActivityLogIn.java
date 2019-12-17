@@ -34,7 +34,7 @@ public class ActivityLogIn extends AppCompatActivity {
         final TextInputEditText PasswordIn = findViewById(R.id.passwort);
 
         Retrofit retrofit = new Retrofit.Builder()
-                                .baseUrl("http://192.168.0.7:8080/")
+                                .baseUrl("http://192.168.0.4:8080/")
                                 .addConverterFactory(GsonConverterFactory.create())
                                 .build();
 

@@ -4,6 +4,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 
@@ -20,5 +21,7 @@ public interface UserService {
     @POST("api/inicio")
     Call<Boolean> VerifyIn(@Body User user);
 
+    @GET("user/{id}")
+    Call<User> getUsers (@Path("id") long userId);
 
 }

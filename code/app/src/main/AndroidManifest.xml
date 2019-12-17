@@ -13,11 +13,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".presentation.ActivityListStudents"></activity>
         <activity android:name=".presentation.ActivityListGeneral"></activity>
-        <activity android:name=".presentation.ActivityListRegistered"></activity>
-        <activity android:name=".presentation.ActivityListToGive"></activity>
-        <activity android:name=".presentation.ActivityListGiven"></activity>
         <activity android:name=".presentation.ActivityInfoTutorship"></activity>
         <activity android:name=".presentation.ActivityCreateTutorship"></activity>
         <activity android:name=".presentation.ActivityConfirmation"></activity>

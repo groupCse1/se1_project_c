@@ -42,14 +42,7 @@ public class ActivityInfoTutorship extends AppCompatActivity{
         CreateTutorshipButton = (Button) findViewById(R.id.CreateTutorshipButton);
 
 
-        StudentsListButton = (Button) findViewById(R.id.EstudentsListButton);
-        StudentsListButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(ActivityInfoTutorship.this, ActivityListStudents.class);
-                startActivity(i);
-            }
-        });
+
 
 
         Intent intent = getIntent();

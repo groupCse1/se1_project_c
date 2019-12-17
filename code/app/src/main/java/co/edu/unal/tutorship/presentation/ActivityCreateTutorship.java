@@ -4,6 +4,7 @@ package co.edu.unal.tutorship.presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -23,9 +24,13 @@ import org.w3c.dom.Text;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.time.MonthDay;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import co.edu.unal.tutorship.R;
+import co.edu.unal.tutorship.model.Classroom;
+import co.edu.unal.tutorship.model.ClassroomService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,6 +38,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ActivityCreateTutorship extends AppCompatActivity implements View.OnClickListener{
+
+    private ClassroomService classroomService;
+    ArrayList<String> salones = new ArrayList<>();
+    String building;
 
     Button DateButton,HourButton,CreateButton;
     EditText ETfecha,EThora,ETDuration,ETCapacity;
@@ -66,10 +75,13 @@ public class ActivityCreateTutorship extends AppCompatActivity implements View.O
 
         TVTittleCreate.setText("Diligencia el Formulario");
 
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,salones);
+        RoomSpinner.setAdapter(arrayAdapter);
+
         // Datos Spinner
         String[] Subjects = {"Ingenieria de Software","Algoritmos","Cálculo Diferencial","Señales y Sistemas"};
-        String[] Buildings = {"Viejo de Ingenieria","Aulas de Ingenieria","Ciencia y Tecnologia","FEM","Instituto de Extensión e Investigación"};
-        Integer[] Room = {101,102,103,104,105,106,201,202,203,204,205,206,301,302,303,304,305,306,401,402,403,404,405,406};
+        String[] Buildings = {"Viejo","Aulas de Ingenieria","CyT"};
+        //Integer[] Room = {101,102,103,104,105,106,201,202,203,204,205,206,301,302,303,304,305,306,401,402,403,404,405,406};
 
         // Conexion con vista
 
@@ -77,9 +89,62 @@ public class ActivityCreateTutorship extends AppCompatActivity implements View.O
         SubjectSpinner.setAdapter(SubjectAdapter);
         ArrayAdapter<String> BuildingAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,Buildings);
         BuildingSpinner.setAdapter(BuildingAdapter);
-        ArrayAdapter<Integer> RoomAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item,Room);
-        RoomSpinner.setAdapter(RoomAdapter);
+        //ArrayAdapter<Integer> RoomAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item,Room);
+        //RoomSpinner.setAdapter(RoomAdapter);
+
+        BuildingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                building = (String) adapterView.getItemAtPosition(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        System.out.println(building);
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.0.7:8080/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        classroomService = retrofit.create(ClassroomService.class);
+        GetClassrooms(building);
     }
+
+    private void GetClassrooms(String building) {
+
+        Classroom cl = new Classroom(building,4,4);
+
+        Call<List<Classroom>> call = classroomService.GetAllClassrooms(cl);
+
+        call.enqueue(new Callback<List<Classroom>>() {
+            @Override
+            public void onResponse(Call<List<Classroom>> call, Response<List<Classroom>> response) {
+                if (!response.isSuccessful()){
+                    System.out.println("CODE: "+response.code());
+                    return;
+                }
+                if(response.isSuccessful()){
+                    for (Classroom classroom : response.body()) {
+                        salones.add(classroom.getBuilding());
+                    }
+                    System.out.println("======LISTA======");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Classroom>> call, Throwable t) {
+
+            }
+        });
+
+    }
+
     @Override
     public void onBackPressed() {
         finish();

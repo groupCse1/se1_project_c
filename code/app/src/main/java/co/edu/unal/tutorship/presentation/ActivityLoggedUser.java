@@ -17,13 +17,16 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ActivityInfoTutor extends AppCompatActivity {
+public class ActivityLoggedUser extends AppCompatActivity {
 
     private UserService userService;
 
     Button dictated;
     Button toDictate;
-
+    Button registered;
+    Button general;
+    Button offer;
+    Button logout;
 
     private TextView facultyTV;
     private TextView nameTV;
@@ -36,7 +39,7 @@ public class ActivityInfoTutor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.info_tutor);
+        setContentView(R.layout.logged_user);
 
 
         nameTV = (TextView) findViewById(R.id.name);
@@ -45,11 +48,11 @@ public class ActivityInfoTutor extends AppCompatActivity {
         emailTV = (TextView) findViewById(R.id.email);
         phoneTV = (TextView) findViewById(R.id.telefonnumer);
 
-        st = getIntent().getExtras().getString("nombre");
+        st = getIntent().getExtras().getString("correo");
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.56.1:8080/")
+                .baseUrl("http://192.168.0.4:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -61,24 +64,37 @@ public class ActivityInfoTutor extends AppCompatActivity {
 
         System.out.println("==========FIN==========");
 
-        dictated = findViewById(R.id.gegeben);
-        dictated.setOnClickListener(new View.OnClickListener() {
+
+
+
+
+        offer = findViewById(R.id.ofrecer);
+        offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(ActivityInfoTutor.this, ActivityListGiven.class);
+                Intent i=new Intent(ActivityLoggedUser.this, ActivityCreateTutorship.class);
                 startActivity(i);
             }
         });
 
-        toDictate = findViewById(R.id.zugeben);
-        toDictate.setOnClickListener(new View.OnClickListener() {
+        general = findViewById(R.id.general);
+        general.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(ActivityInfoTutor.this, ActivityListToGive.class);
+                Intent i=new Intent(ActivityLoggedUser.this, ActivityListGeneral.class);
                 startActivity(i);
             }
         });
 
+        logout = findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(ActivityLoggedUser.this, ActivityLogIn.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
     }
 
@@ -137,5 +153,6 @@ public class ActivityInfoTutor extends AppCompatActivity {
             }
         });
     }
+
 
 }
